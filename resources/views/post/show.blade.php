@@ -17,8 +17,8 @@
 </style>
 @section('content')
 <div class="card">
-      <h2 style="text-align: center">{{ $post->title }}</h2>
-      <p class="card-content">{{$post->content}}</p>
+      <h2 style="text-align: center">{{ $post->langs->first()->title }} <span class="badge badge-secondary">{{ $post->category->langs->first()->name }}</span></h2>
+      <p class="card-content">{{$post->langs->first()->content}}</p>
       <div class="card-date">
       <p>Created: <?= date_format($post->created_at, "d F Y (H:i)") ?></p>
       <?php 

@@ -23,10 +23,13 @@ class CreatePostRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'title' => 'required|string',
-            'content' => 'required|string'
-        ];
+        $rules;
+        foreach (config('app.locales') as $local) {
+            $rules['category'] = 'required';
+            $rules[$local . '.title'] = 'required|string';
+            $rules[$local . '.content'] = 'required|string';
+        }
+        return $rules;
     }
     public function messages(){
         return [

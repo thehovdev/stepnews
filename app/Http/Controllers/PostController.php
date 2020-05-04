@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\PostLang;
+use App\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreatePostRequest;
 
@@ -27,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        return view('post.create')->withCategories(Category::all());
     }
 
     /**
@@ -38,11 +40,20 @@ class PostController extends Controller
      */
     public function store(Post $post, CreatePostRequest $request)
     {
-        $req = (object)$request->validated();
+        $validatedData = $request->validated();
         $post->user_id = Auth::user()->id;
-        $post->title = $req->title;
-        $post->content = $req->content;
+        $post->category_id = $validatedData['category'];
         $post->save();
+        foreach ($validatedData as $key => $value) {
+            if (in_array($key, config('app.locales'))) {;
+                $lang = new PostLang();
+                $lang->post_id = $post->id;
+                $lang->lang = $key;
+                $lang->title = $value['title'];
+                $lang->content = $value['content'];
+                $lang->save();
+            }
+        }
         return redirect()->route('post.index');
     }
 
@@ -65,7 +76,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('post.edit')->withPost($post);
+        return view('post.edit')->with([ 
+            'post' => $post,
+            'categories' => Category::all()]);
     }
 
     /**
@@ -77,10 +90,22 @@ class PostController extends Controller
      */
     public function update(Post $post, CreatePostRequest $request)
     {
-        $req = (object)$request->validated();
-        $post->title = $req->title;
-        $post->content = $req->content;
+        $validatedData = $request->validated();
+        $post->category_id = $validatedData['category'];
         $post->save();
+
+        foreach ($validatedData as $key => $value) {
+            if (in_array($key, config('app.locales'))) {;
+                $lang = PostLang::where([
+                    'post_id' => $post->id, 
+                    'lang' => $key
+                    ])->first();
+                $lang->title = $value['title'];
+                $lang->content = $value['content'];
+                $lang->save();
+            }
+        }
+        
         return redirect()->route('post.index');
     }
 
