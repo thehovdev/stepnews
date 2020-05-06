@@ -1,5 +1,7 @@
 <?php 
     return [
+        'failed' => 'Bu etimadnamələr qeydlərimizə uyğun deyil.',
+        'throttle' => 'Giriş cəhdləri çoxdur. Zəhmət olmasa :seconds saniyədən sonra yenidən cəhd edin.',
         'logout' => "Çixiş",
         'mail' => 'Elektron poçt',
         'password' => 'Şifrə',
