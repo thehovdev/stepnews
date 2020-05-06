@@ -67,14 +67,17 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
+                    <a href="{{ route('setlocale', 'az') }}">AZ</a>
+                    <a href="{{ route('setlocale', 'en') }}">EN</a>
+                    <a href="{{ route('setlocale', 'ru') }}">RU</a>
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                        <a href="{{ url('/post') }}">Blog</a>
+                        <a href="{{ url('/home') }}">@lang('header.home')</a>
+                        <a href="{{ url('/post') }}">@lang('header.blog')</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">@lang('header.login')</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">@lang('header.register')</a>
                         @endif
                     @endauth
                 </div>
@@ -82,15 +85,16 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    @lang('header.content')
                 </div>
 
                 <div class="links">
                     @auth
-                    <a href="{{ url('/post') }}">Blog</a>
+                    <a href="{{ url('/post') }}">@lang('header.blog')</a>
                     @endauth
                 </div>
             </div>
         </div>
+        
     </body>
 </html>

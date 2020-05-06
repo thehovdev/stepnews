@@ -20,10 +20,10 @@
       <h2 style="text-align: center">{{ $post->title }}</h2>
       <p class="card-content">{{$post->content}}</p>
       <div class="card-date">
-      <p>Created: <?= date_format($post->created_at, "d F Y (H:i)") ?></p>
+      <p>@lang('posts.created'): <?= date_format($post->created_at, "d F Y (H:i)") ?></p>
       <?php 
         if ($post->updated_at != $post->created_at) : ?>
-        <p>Updated: <?= date_format($post->updated_at, "d F Y (H:i)") ?></p>
+        <p>@lang('posts.updated'): <?= date_format($post->updated_at, "d F Y (H:i)") ?></p>
         <?php endif;?>
       </div>
 </div>

@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    StepNews
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -32,24 +32,37 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav ml-auto"></ul>
 
-                    </ul>
-
+                    <!--Language Switcher -->
+                    <div class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     @lang('language.title')
+                    </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{ route('setlocale', 'en') }}">@lang('language.en')</a>
+                    <a class="dropdown-item" href="{{ route('setlocale', 'az') }}">@lang('language.az')</a>
+                    <a class="dropdown-item" href="{{ route('setlocale', 'ru') }}">@lang('language.ru')</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('setlocale', 'en') }}">@lang('language.default')</a>
+                </div>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
+                            <a class="nav-link" href="{{ route('categories.index') }}">@lang('header.categories')</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('post.index') }}">@lang('posts.posts')</a>
                         </li>
 
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">@lang('auth.login.verb')</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">@lang('auth.register.verb')</a>
                                 </li>
                             @endif
                         @else
@@ -62,7 +75,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        @lang('auth.logout')
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

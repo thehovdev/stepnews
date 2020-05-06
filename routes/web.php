@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $select = DB::select('select * from posts');
+    return view('welcome')->with('posts',$select);
 });
 
 Auth::routes();
@@ -23,3 +24,4 @@ Route::group(['middleware' => ['auth']], function (){
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/post', 'PostController');
 });
+Route::get('setlocale/{locale}', 'LocaleController@setLocale')->name('setlocale');

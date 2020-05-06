@@ -6,8 +6,8 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <p class="m-0">Categories</p>
-                    <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary">Add</a>
+                    <p class="m-0">@lang('categories.title')</p>
+                    <a href="{{ route('categories.create') }}" class="btn btn-sm btn-primary">@lang('categories.add')</a>
                 </div>
 
                 <div class="card-body">
@@ -20,18 +20,18 @@
                                     <div class="card-body">
                                         <ul class="list-group list-group-flush mb-2">
                                             @foreach ($category->langs as $lang)
-                                            
+
                                             <li class="list-group-item">{{ Str::upper($lang->lang) }} {{ $lang->name }}</li>
                                             
                                             @endforeach
                                         </ul>
                                         <div class="d-flex">
-                                            <a href="{{ route('categories.show', [ 'category' => $category ]) }}" class="btn btn-primary mr-2">Full Info</a>
-                                            <a href="{{ route('categories.edit', [ 'category' => $category ]) }}" class="btn btn-primary mr-2">Edit</a>
+                                            <a href="{{ route('categories.show', [ 'category' => $category ]) }}" class="btn btn-primary mr-1">@lang('categories.fullinfo')</a>
+                                            <a href="{{ route('categories.edit', [ 'category' => $category ]) }}" class="btn btn-primary mr-1">@lang('categories.edit.verb')</a>
                                             <form action="{{ route('categories.destroy', [ 'category' => $category ]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button type="submit" class="btn btn-danger">@lang('categories.delete')</button>
                                             </form>
                                         </div>
                                     </div>
