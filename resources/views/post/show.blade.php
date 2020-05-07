@@ -18,7 +18,7 @@
 @section('content')
 <div class="card">
       <h2 style="text-align: center">{{ $post->title }}</h2>
-      <p class="card-content">{{$post->content}}</p>
+      <p class="card-content">{!!$post->content!!}</p>
       <div class="card-date">
       <p>Created: <?= date_format($post->created_at, "d F Y (H:i)") ?></p>
       <?php 

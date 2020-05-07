@@ -15,7 +15,7 @@
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <textarea name="content" rows="8" class="form-control" placeholder="Enter content name" id="content"></textarea>
+                    <textarea name="content" rows="8" class="form-control" placeholder="Enter content name" id="article-ckeditor"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
