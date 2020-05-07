@@ -37328,6 +37328,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./form */ "./resources/js/form.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -37375,6 +37377,59 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/form.js":
+/*!******************************!*\
+  !*** ./resources/js/form.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+  $(document).on('click', '#add-field', function (e) {
+    e.preventDefault();
+    console.log("sss");
+    $count = $('.sub').last().attr('name');
+    $i = $count.indexOf('[');
+    $count = $count[$i + 1];
+    $count++;
+    console.log($count);
+    $n = $count + 1;
+    $('#subs').append('<p class=\"text-muted m-0\"> - ' + $n + ' -</p> <input autocomplete=\"off\" type=\"text\" class=\"form-control mt-2 mb-2 sub\" name=\"subitems[' + $count + '][name]\" placeholder=\"Enter subitem\"> <input autocomplete=\"off\" type=\"text\" class=\"form-control mt-2 mb-2 sub\" name=\"subitems[' + $count + '][route_name]\" placeholder=\"Enter route name\">');
+  });
+  $('.toggle-class').change(function () {
+    console.log("toggle");
+    var type = $(this).data('type');
+    var id = $(this).data('id');
+    var status = $(this).data('status');
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    console.log(type);
+    $.ajax({
+      url: "/helper",
+      type: "POST",
+      data: {
+        id: id,
+        type: type
+      },
+      success: function success(data) {
+        if (type == 'item') {
+          $("input[data-menuid='" + id + "']").each(function (params) {
+            if ($(this).data('status') == status) $(this).parent().addClass('active focus');else $(this).parent().removeClass('active focus');
+          });
+        }
+      },
+      error: function error() {
+        console.log("error!!!!");
+      }
+    });
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -37393,8 +37448,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/hov-dev/srv/stepnews.loc/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/hov-dev/srv/stepnews.loc/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\stepnews.com\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\stepnews.com\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

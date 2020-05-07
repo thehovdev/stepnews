@@ -1,5 +1,33 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+.entry:not(:first-of-type) {
+  margin-top: 10px;
+}
+
+.glyphicon {
+  font-size: 12px;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: cadetblue !important;
+  border-color: #4e555b;
+}
+
+.home-links > a {
+  color: #636b6f;
+  padding: 0 25px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Nunito", sans-serif;
+  font-weight: 200;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

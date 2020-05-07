@@ -1,0 +1,17 @@
+.entry:not(:first-of-type)
+{
+    margin-top: 10px;
+}
+
+.glyphicon
+{
+    font-size: 12px;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active,
+.btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: cadetblue !important;
+  border-color: #4e555b;
+}
